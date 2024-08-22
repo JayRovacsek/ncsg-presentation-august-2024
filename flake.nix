@@ -116,11 +116,10 @@
           packages = with pkgs; [
             actionlint
             deadnix
-            git
             git-cliff
             go
             hugo
-            lsof
+            lix
             nixfmt-rfc-style
             nodePackages.prettier
             statix
