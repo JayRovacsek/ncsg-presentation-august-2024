@@ -1,0 +1,12 @@
+baseURL = 'https://jayrovacsek.github.io/ncsg-presentation-august-2024/#/'
+languageCode = 'en-au'
+title = 'ncsg-presentation-august-2024'
+theme = "github.com/dzello/reveal-hugo"
+
+[markup.goldmark.renderer]
+unsafe = true
+
+[outputFormats.Reveal]
+baseName = "index"
+mediaType = "text/html"
+isHTML = true
