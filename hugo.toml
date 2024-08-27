@@ -3,9 +3,6 @@ languageCode = 'en-au'
 title = 'ncsg-presentation-august-2024'
 theme = "github.com/dzello/reveal-hugo"
 
-[markup.goldmark.renderer]
-unsafe = true
-
 [outputFormats.Reveal]
 baseName = "index"
 mediaType = "text/html"
@@ -14,3 +11,7 @@ isHTML = true
 [params.reveal_hugo]
 theme = "league"
 slide_number = true
+transition_speed = 'fast'
+
+[markup.goldmark.extensions.extras.superscript]
+enable = true
