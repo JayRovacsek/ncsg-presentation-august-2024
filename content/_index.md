@@ -49,7 +49,7 @@ Before we start; threat modelling!
 
 Tonight I'll assume we are not defending against highly complex adversaries
 
-Simple or limited resources only
+Simple or limited resources only 🥸
 
 {{% note %}}
 Note that we won't be covering adversaries with full network flow visibility
@@ -69,7 +69,9 @@ If those are your adversaries; this in isolation won't protect you
 
 ## What is DNS?
 
-Commonly referred to as the internet phonebook
+Domain Name System;
+
+Also commonly referred to as the internet phonebook
 
 ---
 
@@ -146,6 +148,18 @@ G -->|Return Authoritative DNS Server| H[Authoritative DNS Server]
 H -->|Return IP Address| D
 D -->|Response to User Device| A
 {{< /mermaid >}}
+
+{{%note%}}
+
+- Device
+- Query local cache
+- If a hit, return that value
+- Otherwise, Forward query to configured DNS server
+- That server then will query the root DNS server
+- The root server will return a top level domain server
+- Which in turn returns an authoritative server
+- Which finally will return a response to the requester
+  {{% /note %}}
 
 ---
 
@@ -252,11 +266,46 @@ running our own resolver
 
 ---
 
-## Common options
+![cranky](images/cranky-bear.jpg)
 
-- Pihole
-- Blocky
-- dnsmasq
+---
+
+Pihole
+
+![pihole](images/pihole.svg)
+
+---
+
+dnsmasq
+
+![dnsmasq](images/dnsmasq.png)
+
+---
+
+Blocky
+
+![Blocky](images/blocky.svg)
+
+---
+
+Who's familiar with NAT?
+
+---
+
+NAT (ab)use
+
+```mermaid
+sequenceDiagram
+    participant Device as Device
+    participant NAT as NAT
+    participant InternalServer as Internal DNS Server
+    participant Internet as Internet (1.1.1.1)
+
+    Device->>NAT: DNS Request to 1.1.1.1
+    NAT->>InternalServer: Redirected DNS Request to Internal IP
+    InternalServer->>NAT: DNS Response
+    NAT->>Device: F
+```
 
 {{% note %}}
 Some devices just do not behave inside a network - where suitable
